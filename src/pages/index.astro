@@ -10,81 +10,139 @@ import avatarImage from "../assets/avatar.webp";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Stas Hohulia</title>
+    <title>Stanislav Hohulia — Full-stack Engineer</title>
     <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
       body {
         font-family: system-ui, sans-serif;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        min-height: 100vh;
         margin: 0;
-        background-color: #1a1a1a;
+        padding: 2rem 1rem;
+        background-color: #111111;
         color: #ffffff;
       }
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        max-width: 480px;
+        width: 100%;
+      }
+
+      .avatar {
+        width: 9rem;
+        height: 9rem;
+        border-radius: 9999px;
+        object-fit: cover;
+        border: 3px solid #f97316;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 0 24px rgba(249, 115, 22, 0.25);
+      }
+
       h1 {
-        font-size: 2.5rem;
-        margin-bottom: 0.5rem;
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 0 0 0.25rem;
+        letter-spacing: -0.02em;
       }
-      p {
-        font-size: 1.25rem;
-        margin: 0.25rem 0;
-        color: #a1a1aa;
-      }
-      .highlight {
-        color: #4f46e5;
+
+      .title {
+        font-size: 1rem;
+        color: #f97316;
         font-weight: 600;
+        margin: 0 0 1rem;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        font-size: 0.875rem;
       }
+
+      .bio {
+        font-size: 0.975rem;
+        color: #a1a1aa;
+        line-height: 1.6;
+        margin: 0 0 0.75rem;
+      }
+
+      .location {
+        font-size: 0.825rem;
+        color: #71717a;
+        margin: 0 0 2rem;
+      }
+
       .links {
         display: flex;
-        gap: 1rem;
-        margin-top: 1.5rem;
+        flex-wrap: wrap;
+        gap: 0.625rem;
+        justify-content: center;
       }
+
       .link {
         color: #ffffff;
         text-decoration: none;
-        border: 1px solid #4f46e5;
-        padding: 0.5rem 1rem;
+        border: 1px solid #f97316;
+        padding: 0.45rem 1rem;
         border-radius: 0.375rem;
         transition: all 0.2s ease;
-        font-size: 1rem;
+        font-size: 0.9rem;
+        font-weight: 500;
       }
+
       .link:hover {
-        background-color: #4f46e5;
+        background-color: #f97316;
+        color: #111111;
         transform: translateY(-2px);
       }
-      .avatar {
-        width: 10rem;
-        height: 10rem;
-        border-radius: 9999px;
-        object-fit: cover;
-        border: 4px solid #4f46e5;
-        margin-bottom: 2rem;
-        box-shadow:
-          0 4px 6px -1px rgb(0 0 0 / 0.1),
-          0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+      .link.primary {
+        background-color: #f97316;
+        color: #111111;
+        font-weight: 600;
+      }
+
+      .link.primary:hover {
+        background-color: #ea580c;
+        border-color: #ea580c;
       }
     </style>
   </head>
   <body>
-    <Image
-      src={avatarImage}
-      alt="Stanislav Hohulia"
-      class="avatar"
-      width={160}
-      height={160}
-    />
-    <h1>Stanislav Hohulia</h1>
-    <p class="highlight">Frontend Developer | Moving towards Fullstack</p>
-    <p>2 year experience</p>
-    <p>More soon :)</p>
+    <div class="card">
+      <Image
+        src={avatarImage}
+        alt="Stanislav Hohulia"
+        class="avatar"
+        width={144}
+        height={144}
+      />
 
-    <div class="links">
-      <a href="/lnkd" target="_blank" class="link">LinkedIn</a>
-      <a href="/tg" target="_blank" class="link">Telegram</a>
-      <a href="/cv.pdf" target="_blank" class="link">CV</a>
-      <a href="/code" target="_blank" class="link">GitHub</a>
+      <h1>Stanislav Hohulia</h1>
+      <p class="title">Full-stack Engineer</p>
+
+      <p class="bio">
+        2+ years building high-traffic web apps with Vue.js, React/Next.js, and
+        Node.js. Worked on e-commerce systems with 3.7M+ monthly users.
+      </p>
+
+      <p class="location">Kyiv, Ukraine · Open to remote</p>
+
+      <div class="links">
+        <a href="/cv.pdf" target="_blank" class="link primary">CV</a>
+        <a href="/lnkd" target="_blank" class="link">LinkedIn</a>
+        <a href="/tg" target="_blank" class="link">Telegram</a>
+        <a href="/code" target="_blank" class="link">GitHub</a>
+        <a href="mailto:stashohulia@gmail.com" class="link">Email</a>
+      </div>
     </div>
   </body>
 </html>
