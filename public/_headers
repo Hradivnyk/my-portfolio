@@ -3,7 +3,7 @@
 #
 # script-src covers the inline application/ld+json block too, so its hash has
 # to be listed. Regenerate after editing the Person data in index.astro:
-#   npm run build && node -e "const f=require('fs'),c=require('crypto');for(const m of require('fs').readFileSync('dist/index.html','utf8').matchAll(/<script type=\"application\/ld\+json\">([\s\S]*?)<\/script>/g))console.log('sha256-0sX8Ai98stiQdMK4cynJ9m11mMJu27G1PFmBel0WwPk='+c.createHash('sha256').update(m[1]).digest('base64'))"
+#   npm run build && node -e "const f=require('fs'),c=require('crypto');for(const m of require('fs').readFileSync('dist/index.html','utf8').matchAll(/<script type=\"application\/ld\+json\">([\s\S]*?)<\/script>/g))console.log('sha256-'+c.createHash('sha256').update(m[1]).digest('base64'))"
 #
 # The static.cloudflareinsights.com entry is the Web Analytics beacon, injected
 # by Cloudflare rather than by the build; it reports to same-origin /cdn-cgi/rum.
@@ -34,6 +34,13 @@
 /og.png
   Cache-Control: public, max-age=86400
 
-# CV is replaced in place, so keep it short-lived
+# CV is replaced in place, so keep it short-lived.
+#
+# noindex keeps it out of search results while staying crawlable and linkable:
+# replacing the file cannot retract a copy Google already indexed, and a PDF
+# result competes with the homepage for the same name while looking far worse.
+# A robots.txt Disallow would be the wrong tool — it blocks the crawl, so this
+# header would never be read.
 /cv.pdf
   Cache-Control: public, max-age=3600, must-revalidate
+  X-Robots-Tag: noindex

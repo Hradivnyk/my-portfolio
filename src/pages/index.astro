@@ -48,6 +48,10 @@ const person = {
     set:html={JSON.stringify(person)}
   />
 
+  {/* priority, because Astro's Image defaults to loading="lazy" and this is the
+      topmost element on the page — lazy defers the request until after layout,
+      instead of letting the preload scanner start it during parsing. It is
+      meant for one image per page, and this is the one. */}
   <Image
     src={avatarImage}
     alt="Stanislav Hohulia"
@@ -56,6 +60,7 @@ const person = {
     height={144}
     densities={[1, 2, 3]}
     quality={90}
+    priority
   />
 
   <h1>Stanislav Hohulia</h1>
