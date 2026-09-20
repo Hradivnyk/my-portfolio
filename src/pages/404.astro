@@ -1,90 +1,35 @@
 ---
-// Cloudflare Pages serves this with a real 404 status.
+// Cloudflare serves this with a real 404 status (see wrangler.jsonc).
 // Without it, unknown paths fall back to index.html with 200 (soft 404).
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="robots" content="noindex" />
-    <title>404 — Stanislav Hohulia</title>
-    <style>
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-      }
+<BaseLayout title="404 — Stanislav Hohulia" noindex>
+  <p class="code">404</p>
+  <h1>Page not found</h1>
+  <p class="message">That link does not lead anywhere.</p>
+  <a href="/" class="link primary">Go to homepage</a>
+</BaseLayout>
 
-      body {
-        font-family: system-ui, sans-serif;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-        padding: 2rem 1rem;
-        background-color: #111111;
-        color: #ffffff;
-      }
+<style>
+  .code {
+    font-size: 4rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.04em;
+    color: #f97316;
+    line-height: 1;
+  }
 
-      .card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        max-width: 480px;
-        width: 100%;
-      }
+  h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 1rem 0 0.5rem;
+  }
 
-      .code {
-        font-size: 4rem;
-        font-weight: 700;
-        margin: 0;
-        letter-spacing: -0.04em;
-        color: #f97316;
-        line-height: 1;
-      }
-
-      h1 {
-        font-size: 1.25rem;
-        font-weight: 600;
-        margin: 1rem 0 0.5rem;
-      }
-
-      p {
-        color: #a3a3a3;
-        margin: 0 0 1.75rem;
-        line-height: 1.6;
-      }
-
-      .link {
-        color: #111111;
-        text-decoration: none;
-        background-color: #f97316;
-        border: 1px solid #f97316;
-        padding: 0.45rem 1rem;
-        border-radius: 0.375rem;
-        transition: all 0.2s ease;
-        font-size: 0.9rem;
-        font-weight: 600;
-      }
-
-      .link:hover {
-        background-color: #ea580c;
-        border-color: #ea580c;
-        transform: translateY(-2px);
-      }
-    </style>
-  </head>
-  <body>
-    <div class="card">
-      <p class="code">404</p>
-      <h1>Page not found</h1>
-      <p>That link does not lead anywhere.</p>
-      <a href="/" class="link">Go to homepage</a>
-    </div>
-  </body>
-</html>
+  .message {
+    color: #a1a1aa;
+    margin: 0 0 1.75rem;
+    line-height: 1.6;
+  }
+</style>

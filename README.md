@@ -43,9 +43,18 @@ is served with a real 404 status.
 | Path | Purpose |
 | --- | --- |
 | [`public/_redirects`](public/_redirects) | `/tg`, `/lnkd`, `/code` → external profiles (301) |
-| [`public/_headers`](public/_headers) | Cache headers; hashed assets are immutable |
+| [`public/_headers`](public/_headers) | Security headers and cache policy; hashed assets are immutable |
 | [`public/og.png`](public/og.png) | Link preview image, 1200×630 |
+| [`src/layouts/BaseLayout.astro`](src/layouts/BaseLayout.astro) | Shared `<head>`, SEO and link-preview tags for both pages |
+| [`src/styles/global.css`](src/styles/global.css) | Reset, page frame and `.link` buttons — shared, so not scoped to a component |
 | [`.nvmrc`](.nvmrc) | Node version for the Cloudflare build |
+
+The CSP in `_headers` pins a SHA-256 of the inline `application/ld+json` block in
+[`src/pages/index.astro`](src/pages/index.astro). Editing that `person` object means
+regenerating the hash — the command sits in a comment at the top of
+[`public/_headers`](public/_headers). Skipping it blocks the structured data in
+browsers; Googlebot ignores CSP, so search would still see it and the breakage
+would be silent.
 
 `public/og.png` and `public/apple-touch-icon.png` are generated from
 `src/assets/avatar.webp`; regenerate them if the avatar changes.

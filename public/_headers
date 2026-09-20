@@ -1,3 +1,22 @@
+# Security headers. Cloudflare serves nothing dynamic here, so the policy can
+# be closed by default and opened only for what the page actually loads.
+#
+# script-src covers the inline application/ld+json block too, so its hash has
+# to be listed. Regenerate after editing the Person data in index.astro:
+#   npm run build && node -e "const f=require('fs'),c=require('crypto');for(const m of require('fs').readFileSync('dist/index.html','utf8').matchAll(/<script type=\"application\/ld\+json\">([\s\S]*?)<\/script>/g))console.log('sha256-0sX8Ai98stiQdMK4cynJ9m11mMJu27G1PFmBel0WwPk='+c.createHash('sha256').update(m[1]).digest('base64'))"
+#
+# The static.cloudflareinsights.com entry is the Web Analytics beacon, injected
+# by Cloudflare rather than by the build; it reports to same-origin /cdn-cgi/rum.
+# style-src stays 'unsafe-inline' because Astro inlines the scoped CSS, and
+# those hashes would change on every style edit.
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), camera=(), microphone=(), interest-cohort=()
+  Content-Security-Policy: default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; script-src https://static.cloudflareinsights.com 'sha256-0sX8Ai98stiQdMK4cynJ9m11mMJu27G1PFmBel0WwPk='; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+
 # Hashed assets — safe to cache forever
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
