@@ -1,0 +1,15 @@
+{
+  // Must match the Workers project name in the Cloudflare dashboard,
+  // otherwise `wrangler deploy` creates a second Worker.
+  "name": "my-portfolio",
+  "compatibility_date": "2026-09-20",
+  "assets": {
+    "directory": "./dist",
+    // Workers default to "none", which would ignore dist/404.html.
+    // Pages used to infer this; here it has to be explicit.
+    "not_found_handling": "404-page"
+  },
+  "observability": {
+    "enabled": true
+  }
+}
