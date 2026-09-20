@@ -10,6 +10,9 @@ import avatarImage from "../assets/avatar.webp";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <!-- Points search engines at the apex, which the workers.dev host and
+         any tracking-parameter variants would otherwise duplicate. -->
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).href} />
     <title>Stanislav Hohulia — Full-stack Engineer</title>
     <style>
       *,
